@@ -59,6 +59,8 @@ when I have no idea what system this will be built and run on.
 
 Notes:
 
+github link: https://github.com/imaginary-root-1/candidate
+
 Requires a JVM (and jdk if you want to build).
 
 From my reading of the instructions, I did not see a definition of what
