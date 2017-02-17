@@ -9,7 +9,7 @@
 
 import java.util.Arrays;
 
-class UnitTest {
+public class UnitTest {
 	/**
 	 * Run all tests.
 	 *
@@ -22,6 +22,7 @@ class UnitTest {
 		 */
 		test(new TestUnitTest());
 		test(new TestCommandLine());
+		test(new TestPackageManager());
 		System.out.println("Unit tests passed");
 		System.exit(0);
 	}
@@ -104,6 +105,33 @@ class UnitTest {
 			for (int i = 0; i < expect.length; ++i) {
 				assertEquals(msg, expect[i], actual[i]);
 			}
+		}
+	}
+
+	/**
+	 * Assert that two booleans are equal.
+	 *
+	 * @param expect The expected value.
+	 * @param actual The actual value.
+	 *
+	 * @exception AssertionError The assertion failed.
+	 */
+	public static void assertEquals(boolean expect, boolean actual) {
+		assertEquals(null, expect, actual);
+	}
+
+	/**
+	 * Assert that two booleans are equal.
+	 *
+	 * @param msg A custom message, prepended to the error message.
+	 * @param expect The expected value.
+	 * @param actual The actual value.
+	 *
+	 * @exception AssertionError The assertion failed.
+	 */
+	public static void assertEquals(String msg, boolean expect, boolean actual) {
+		if (actual != expect) {
+			throwError(msg, String.valueOf(expect), String.valueOf(actual));
 		}
 	}
 
