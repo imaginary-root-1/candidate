@@ -7,6 +7,8 @@
  * from the stone age.
  */
 
+import java.util.Arrays;
+
 class UnitTest {
 	/**
 	 * Run all tests.
@@ -19,6 +21,7 @@ class UnitTest {
 		 * way too complex for this assignment.
 		 */
 		test(new TestUnitTest());
+		test(new TestCommandLine());
 		System.out.println("Unit tests passed");
 		System.exit(0);
 	}
@@ -32,6 +35,75 @@ class UnitTest {
 			e.printStackTrace();
 			System.out.println("Unit tests failed");
 			System.exit(1);
+		}
+	}
+
+	/**
+	 * Assert that two strings are equal.
+	 *
+	 * @param expect The expected value.
+	 * @param actual The actual value.
+	 *
+	 * @exception AssertionError The assertion failed.
+	 */
+	public static void assertEquals(String expect, String actual) {
+		assertEquals(null, expect, actual);
+	}
+
+	/**
+	 * Assert that two strings are equal.
+	 *
+	 * @param msg A custom message, prepended to the error message.
+	 * @param expect The expected value.
+	 * @param actual The actual value.
+	 *
+	 * @exception AssertionError The assertion failed.
+	 */
+	public static void assertEquals(String msg, String expect, String actual) {
+		boolean result = true;
+
+		if (expect == null) {
+			result = (actual == null);
+		} else {
+			result = expect.equals(actual);
+		}
+		if (!result) {
+			throwError(msg, String.valueOf(expect), String.valueOf(actual));
+		}
+	}
+
+	/**
+	 * Assert that two string arrays are equal.
+	 *
+	 * @param expect The expected value.
+	 * @param actual The actual value.
+	 *
+	 * @exception AssertionError The assertion failed.
+	 */
+	public static void assertEquals(String[] expect, String[] actual) {
+		assertEquals(null, expect, actual);
+	}
+
+	/**
+	 * Assert that two string arrays are equal.
+	 *
+	 * @param msg A custom message, prepended to the error message.
+	 * @param expect The expected value.
+	 * @param actual The actual value.
+	 *
+	 * @exception AssertionError The assertion failed.
+	 */
+	public static void assertEquals(String msg, String[] expect, String[] actual) {
+		if (expect == null) {
+			throwError(msg, "is null", "is not null");
+		} else if (actual == null) {
+			throwError(msg, "is not null", "is null");
+		} else if (expect.length != actual.length) {
+			throwError(msg, "has length " + expect.length, "has length " + actual.length);
+		} else {
+			for (int i = 0; i < expect.length; ++i) {
+				assertEquals(msg, expect[i], actual[i]);
+			}
 		}
 	}
 
@@ -127,7 +199,7 @@ class UnitTest {
 		if (msg != null) {
 			sb.append(msg).append(": ");
 		}
-		sb.append("expecting " + expect + ", got " + actual);
+		sb.append("expecting " + expect + ", actual " + actual);
 		throw new AssertionError(sb.toString());
 	}
 }
