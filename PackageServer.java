@@ -18,8 +18,11 @@ public class PackageServer {
 	}
 
 	public void serve() throws IOException {
+		System.out.println("Package server starting");
+
 		ServerSocket ss = new ServerSocket(8080);
 
+		System.out.println("Package server started");
 		for (;;) {
 			try {
 				new Thread(new ClientHandler(ss.accept(), manager)).start();
