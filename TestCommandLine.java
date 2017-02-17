@@ -11,13 +11,16 @@ public class TestCommandLine implements IUnitTest {
 		test("INDEX|", null, null, null);
 		test("INDEX||", null, null, null);
 		test("INDEX|  |", null, null, null);
-		test("INDEX|component", "INDEX", "component", new String[] {});
+		test("INDEX|component", null, null, null);
 		test("INDEX|component|", "INDEX", "component", new String[] {});
-		test("INDEX|component|,,", "INDEX", "component", new String[] {});
-		test("   INDEX  |   component  |", "INDEX", "component", new String[] {});
-		test("INDEX|component|a,b,c", "INDEX", "component", new String[] {"a", "b", "c"});
-		test("INDEX|component|a,,,b,c", "INDEX", "component", new String[] {"a", "", "", "b", "c"});
-		test("   INDEX  |   component  |   a , ,  b ,c  ", "INDEX", "component", new String[] {"a", "", "b", "c"});
+		test("INDEX|component|,,", null, null, null);
+		test("   INDEX  |   component  |", null, null, null);
+		test("INDEX|component-x|", "INDEX", "component-x", new String[] {});
+		test("INDEX|component x|", null, null, null);
+		test("INDEX|component|a-x,b-x,c-x", "INDEX", "component", new String[] {"a-x", "b-x", "c-x"});
+		test("INDEX|component|a x,b x,c x", null, null, null);
+		test("INDEX|component|a,,,b,c", null, null, null);
+		test("   INDEX  |   component  |   a , ,  b ,c  ", null, null, null);
 	}
 
 	private void test(String line, String command, String thePackage, String[] depends) {
