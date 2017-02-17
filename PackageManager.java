@@ -8,6 +8,15 @@ public class PackageManager {
 		packages = new HashMap<String, Package>();
 	}
 
+	/**
+	 * Add/update a package in the package manager.
+	 *
+	 * @param packageName The name of the package.
+	 * @param depends The packages that this package depends on.
+	 *
+	 * @return true if the package was successfully added or updated,
+	 *   false otherwise.
+	 */
 	public synchronized boolean index(String packageName, String[] depends) {
 		Package thePackage = packages.get(packageName);
 
@@ -44,6 +53,14 @@ public class PackageManager {
 		return true;
 	}
 
+	/**
+	 * Remove a package from the package manager.
+	 *
+	 * @param packageName The name of the package.
+	 *
+	 * @return true if the package was removed or did not exist,
+	 *   false otherwise.
+	 */
 	public synchronized boolean remove(String packageName) {
 		Package thePackage = packages.get(packageName);
 
@@ -62,6 +79,14 @@ public class PackageManager {
 		}
 	}
 
+	/**
+	 * Query a package in the package manager.
+	 *
+	 * @param packageName The name of the package.
+	 *
+	 * @return true if the package is known by the package manager,
+	 *   false otherwise.
+	 */
 	public synchronized boolean query(String packageName) {
 		return packages.containsKey(packageName);
 	}

@@ -59,12 +59,22 @@ public class CommandLine {
 		}
 	}
 
+	/**
+	 * Validate a command.
+	 *
+	 * @param The command to validate.
+	 */
 	private void checkValidCommand(String command) {
 		if (!commandSet.contains(command)) {
 			throw new IllegalArgumentException("Illegal command \"" + command + "\"");
 		}
 	}
 
+	/**
+	 * Validate a package name.
+	 *
+	 * @param The package name to validate.
+	 */
 	private void checkValidPackageName(String packageName) {
 		if (!alphaNumericDash.matcher(packageName).matches()) {
 			throw new IllegalArgumentException("Illegal package name \"" + packageName + "\"");
@@ -79,16 +89,16 @@ public class CommandLine {
 	public String getCommand() { return command; }
 
 	/**
-	 * Return the package.
+	 * Return the package name.
 	 *
-	 * @return The package.
+	 * @return The package name.
 	 */
 	public String getPackage() { return thePackage; }
 
 	/**
-	 * Return the depends.
+	 * Return the depends packages.
 	 *
-	 * @return The depends.
+	 * @return The depends packages.
 	 */
 	public String[] getDepends() { return depends; }
 }
